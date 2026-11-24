@@ -56,6 +56,25 @@ export default function SidebarLayout() {
                           </NavLink>
                         </li>
                       ))}
+                      <li>
+                        <h2 className="h6">Create Items</h2>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/create-book"
+                          className={({ isActive, isPending }) =>
+                            [
+                              "nav-link",
+                              isActive && "active",
+                              isPending && "pending",
+                            ]
+                              .filter(Boolean)
+                              .join(" ")
+                          }
+                        >
+                          Create Book
+                        </NavLink>
+                      </li>
                     </ul>
                   </nav>
                 </div>

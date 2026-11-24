@@ -13,6 +13,7 @@ export default [
     route("catalog/authors/:authorid", "routes/catalog.authors.$authorid.tsx"),
     route("catalog/genres/:genreid", "routes/catalog.genres.$genreid.tsx"),
     route("catalog/instances/:instanceid", "routes/catalog.instances.$instanceid.tsx"),
+    route("create-book", "routes/create-book.tsx"),
     route("authors", "routes/authors.tsx"),
     route("genres", "routes/genres.tsx"),
     route("books", "routes/books.tsx"),
