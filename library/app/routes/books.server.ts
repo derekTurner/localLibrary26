@@ -1,5 +1,7 @@
 import { connectDB } from "../db";
+import Author from "../models/author";
 import Book from "../models/book";
+import Genre from "../models/genre";
 
 export interface BookData {
   _id: string;
@@ -26,8 +28,8 @@ export async function loadBooks(): Promise<BookData[]> {
     console.log("Database connected, querying books...");
 
     const books = await Book.find({})
-      .populate("authors")
-      .populate("genres")
+      .populate({ path: "author", model: Author })
+      .populate({ path: "genre", model: Genre })
       .exec();
 
     console.log(`Loaded ${books.length} books`);
@@ -43,7 +45,7 @@ export async function loadBooks(): Promise<BookData[]> {
       return {
         _id: bookObj._id.toString(),
         title: bookObj.title,
-        authors: (bookObj.authors || []).map((author: any) => ({
+        authors: (bookObj.author || []).map((author: any) => ({
           _id: author._id.toString(),
           first_name: author.first_name,
           family_name: author.family_name,
@@ -51,7 +53,7 @@ export async function loadBooks(): Promise<BookData[]> {
         })),
         summary: bookObj.summary,
         isbn: bookObj.isbn,
-        genres: (bookObj.genres || []).map((genre: any) => ({
+        genres: (bookObj.genre || []).map((genre: any) => ({
           _id: genre._id.toString(),
           name: genre.name,
         })),

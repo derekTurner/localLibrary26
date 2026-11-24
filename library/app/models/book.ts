@@ -6,10 +6,10 @@ import { type IGenre } from './genre';
 export interface IBook extends Document{
   _id: string,
   title: string,
-  authors: IAuthor [],
+  author: IAuthor [],
   summary: string,
   isbn: string,
-  genres: IGenre [],
+  genre: IGenre [],
   url: string 
 }
 
@@ -17,10 +17,10 @@ export interface IBook extends Document{
 const BookSchema:Schema = new Schema(
   {
     title:    {type: String, required: true},
-    authors: [{type: Schema.Types.ObjectId, ref: 'Author', required: true}],
+    author: [{type: Schema.Types.ObjectId, ref: 'Author', required: true}],
     summary:  {type: String, required: true},
     isbn:     {type: String, required: true},
-    genres:  [{type: Schema.Types.ObjectId, ref: 'Genre', required: true}]
+    genre:  [{type: Schema.Types.ObjectId, ref: 'Genre', required: true}]
   }
 );
 
